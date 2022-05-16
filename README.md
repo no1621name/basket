@@ -1,24 +1,9 @@
 # basket
 
-## Project setup
-```
-npm install
-```
+It's my second try to do pseudo internet-store (with admin-panel).
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Used technologies: Vue3 (+ Vuex, Vue-router), TS.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+For work you need open console in project folder and enter command "npm run serve". Then in browser open "localhost:8080".
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Admin-panel password - "12345gGs".

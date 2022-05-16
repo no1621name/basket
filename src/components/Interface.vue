@@ -1,0 +1,102 @@
+<template>
+  <div class="main-interface">
+    <div class="admin-access-button">
+      <button @click="openAdminConfirmation">Admin panel</button>
+    </div>
+
+    <div class="basket-shortinfo">
+      <b class="total-cost">{{allBasketItemsCost}}$</b>
+      <button @click="openBasketClick" class="open-basket">
+        <svg
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px" y="0px" viewBox="0 0 347.858 347.858"
+          style="enable-background:new 0 0 347.858 347.858; width: 15px;"
+          xml:space="preserve">
+          <g>
+            <path style="fill:#000001;" d="M321.911,173.178H25.955c-5.672,0-10.745,2.298-13.916,6.306c-3.172,4.008-4.207,9.231-2.914,14.711
+              l31.693,134.137c2.494,10.568,13.021,18.846,23.966,18.846h218.297c10.928,0,21.455-8.333,23.965-18.968l31.693-134.016
+              c1.293-5.478,0.258-10.702-2.914-14.71C332.655,175.476,327.583,173.178,321.911,173.178z M282.634,206.286l-25.044,107.06
+              c-0.657,2.809-3.431,5.027-6.315,5.05l-8.958,0.072c-1.32,0-2.49-0.521-3.211-1.43c-0.723-0.912-0.965-2.177-0.663-3.469
+              l25.029-106.994c0.658-2.81,3.433-5.037,6.316-5.07l9.012-0.102c1.306,0.006,2.462,0.524,3.176,1.424
+              C282.696,203.735,282.936,204.995,282.634,206.286z M183.398,206.29v105.774c0,2.819-2.294,5.113-5.113,5.113h-8.773
+              c-2.819,0-5.113-2.293-5.113-5.113V206.29c0-2.819,2.294-5.113,5.113-5.113h8.773C181.104,201.178,183.398,203.471,183.398,206.29z
+              M108.761,317.392c-0.851,1.074-2.042,1.75-3.207,1.784l-8.768-0.409l-0.193-0.005c-2.807-0.022-5.641-2.394-6.317-5.285
+              L65.232,206.382c-0.309-1.319-0.05-2.749,0.657-3.641c0.777-0.979,1.973-1.564,3.199-1.564l8.987,0.214
+              c2.883,0.033,5.658,2.266,6.316,5.081l25.031,107.224C109.732,315.018,109.467,316.503,108.761,317.392z"/>
+            <path style="fill:#000001;" d="M345.403,112.235c-2.114-2.579-5.37-4.058-8.931-4.058h-40.087
+              c-0.892-1.124-1.904-2.262-3.053-3.412l-93.583-93.571c-6.779-6.78-15.815-10.513-25.444-10.513
+              c-9.636,0-18.68,3.738-25.466,10.523l-93.584,93.563c-1.149,1.149-2.16,2.288-3.052,3.411H11.394c-3.587,0-6.853,1.475-8.962,4.046
+              c-2.103,2.565-2.879,5.892-2.185,9.363l3.75,18.853c1.316,6.581,7.55,11.737,14.191,11.737h311.487
+              c6.632,0,12.866-5.196,14.19-11.824l3.75-18.665C348.307,118.239,347.5,114.793,345.403,112.235z M170.05,32.418
+              c1.512-1.512,3.314-1.737,4.254-1.737c0.936,0,2.729,0.224,4.232,1.727l75.779,75.77H94.272L170.05,32.418z"/>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent } from 'vue';
+import { useStore } from 'vuex';
+
+export default defineComponent({
+  name: 'Interface',
+  setup() {
+    const store = useStore();
+    const allBasketItemsCost = computed(() => store.getters.allBasketItemsCost);
+
+
+    const openBasketClick = () => {
+      store.commit('CHANGE_MODAL_WINDOW_CONTENT', 'basket');
+      store.commit('TOGGLE_MODAL_WINDOW', true);
+    }
+
+    const openAdminConfirmation = () => {
+      store.commit('CHANGE_MODAL_WINDOW_CONTENT', 'admin');
+      store.commit('TOGGLE_MODAL_WINDOW', true);
+    }
+
+    return { openBasketClick, openAdminConfirmation, allBasketItemsCost };
+  },
+})
+</script>
+
+<style lang="scss" scoped>
+
+
+.main-interface{
+  position: fixed;
+  background: #fff;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1;
+  top: 0;
+  .admin-access-button{
+    button{
+      cursor: pointer;
+      background: none;
+      border: 1px solid #000;
+      padding: 5px;
+    }
+  }
+ .basket-shortinfo {
+    width: 55px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+  }
+}
+</style>
