@@ -89,7 +89,7 @@
             required
             placeholder="$"
           >
-          <button @click="deleteSize(size, ind)">X</button>
+          <button v-if="sizeNamesList.length > 1" @click="deleteSize(size, ind)">X</button>
        </span>
        <button @click="createNewSize">New size</button>
      </div>
@@ -122,7 +122,6 @@ export default defineComponent({
     const saveEditedItem = () => {
       if(preSaveItemInfo.discount) delete props.fullItemInfo.discount;
       store.commit('EDIT_ITEM', preSaveItemInfo);
-      alert(`Item "${props.fullItemInfo.name}" has edited!`);
     };
 
     const deleteSize = (size: string, ind: number) => {

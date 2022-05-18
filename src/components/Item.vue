@@ -92,7 +92,7 @@ export default defineComponent({
         box-sizing: border-box;
         border: 1px solid #000;
         background: none;
-        width: 37px;
+        min-width: 37px;
         height: 20px;
         cursor: pointer;
         transition: .5s all ease;

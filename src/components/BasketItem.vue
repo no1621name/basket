@@ -43,8 +43,9 @@ export default defineComponent({
 
     const cost = computed(() => {
       const startCost = (props.basketItemInfo.price + props.basketItemInfo.sizeList[props.basketItemInfo.selectedSize]) * props.basketItemInfo.amount;
-      const discountValue = props.basketItemInfo.discount ? (props.basketItemInfo.price/100)*props.basketItemInfo.discount : 0;
+      const discountValue = props.basketItemInfo.discount ? ((props.basketItemInfo.price/100)*props.basketItemInfo.discount)*props.basketItemInfo.amount : 0;
       const finalCost = Number((startCost - discountValue).toFixed(1));
+      console.log(discountValue)
       return finalCost;
     });
 

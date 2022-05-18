@@ -12,7 +12,7 @@ const basketStore = {
     allBasketItemsCost: ({basketList}: any) => {
       let total = 0;
       basketList.forEach((el: Item) => {
-        total = total + Number(( ( (el.price + el.sizeList[el.selectedSize]) * el.amount) - (el.discount ? (el.price/100)*el.discount : 0) ).toFixed(1));
+        total = total + Number(( ( (el.price + el.sizeList[el.selectedSize]) * el.amount) - (el.discount ? ((el.price/100)*el.discount)*el.amount : 0) ).toFixed(1));
       });
       return total;
     },

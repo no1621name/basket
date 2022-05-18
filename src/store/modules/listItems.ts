@@ -17,6 +17,7 @@ export interface SizeList {
 
 export class Item {
   constructor(obj: Item) {
+    obj.selectedSize = Object.keys(obj.sizeList)[0];
     return { ...obj }
   }
 }
@@ -40,7 +41,7 @@ const listItemsStore = {
           price: 10,
           imageSrc: 'bag-img-1',
           id: 1,
-          selectedSize: 'XS',
+          selectedSize: '',
           sizeList: new SizeList(
             {
               'XS': 0,
@@ -64,7 +65,7 @@ const listItemsStore = {
           price: 20,
           imageSrc: 'bag-img-2',
           id: 2,
-          selectedSize: 'XS',
+          selectedSize: '',
           sizeList: new SizeList(
             {
               'XS': 0,
@@ -89,7 +90,7 @@ const listItemsStore = {
           imageSrc: 'bag-img-3',
           id: 3,
           discount: 30,
-          selectedSize: 'XS',
+          selectedSize: '',
           sizeList: new SizeList(
             {
               'XS': 0,
@@ -118,7 +119,7 @@ const listItemsStore = {
       const itemIndex = state.list.findIndex((el: Item) => el.id === editedItem.id);
       const item = state.list[itemIndex];
       Object.assign(item, editedItem);
-      console.log(item)
+      item.selectedSize = Object.keys(editedItem.sizeList)[0];
     }
   },
   actions: {
