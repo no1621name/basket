@@ -9,20 +9,14 @@
         v-model="adminPasswordInput"
         placeholder="Password..."
         @change="passwordCheck"
+        autocomplete="off"
       />
-      <!-- autocomplete="off" -->
-      <router-link
-        to="/70xXaJI828b529HtWfG4ghXLev9JiyWQ"
-        v-if="getAccess"
-        class="router-link"
-      >
-        Wellcome, Admin
-      </router-link>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import router from '@/router';
 import { computed, defineComponent, ref, watch } from 'vue'
 import { useStore } from 'vuex';
 
@@ -34,22 +28,20 @@ export default defineComponent({
     const isShowModalWindow = computed(() => store.getters.isShowModalWindow);
 
     let adminPasswordInput = ref('');
-    let getAccess = ref(false);
 
     const passwordCheck = () => {
       if(adminPasswordInput.value == adminPassword) {
-        getAccess.value = true;
+        router.push('/70xXaJI828b529HtWfG4ghXLev9JiyWQ')
       }
     }
 
     watch(() => isShowModalWindow.value, () => {
       if (!isShowModalWindow.value) {
         adminPasswordInput.value = '';
-        getAccess.value = false;
       }
     })
 
-    return {passwordCheck, getAccess, adminPasswordInput};
+    return {passwordCheck, adminPasswordInput};
   },
 })
 </script>

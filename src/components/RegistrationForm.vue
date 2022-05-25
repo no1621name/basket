@@ -1,7 +1,7 @@
 <template>
   <div class="registration-form">
     <RegistrationList />
-    <form action="/" @submit.prevent="showGoBack = true">
+    <form action="/" @submit.prevent="returnToMain">
       <div class="contact-info">
         <input
           type="text"
@@ -74,19 +74,19 @@
             v-model.trim="formData.paypalPassword"
             placeholder="PayPal password"
             required
-            pattern="^\S+{12, 48}$"
+            pattern="^\w+{12, 48}$"
           >
         </template>
       </div>
       <button type="submit">Submit</button>
-      <router-link to="/" v-if="showGoBack" @click="returnToMain" class="go-back">Go back</router-link>
     </form>
   </div>
 </template>
 
 <script lang="ts">
 import RegistrationList from '@/components/RegistrationList.vue';
-import { computed, defineComponent, ref } from "vue";
+import router from '@/router';
+import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
@@ -97,14 +97,14 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const formData = computed(() => store.getters.formData).value;
-    const showGoBack = ref(false);
 
     const returnToMain = () => {
       store.commit('CLEAR_BASKET');
       store.commit('TOGGLE_MODAL_WINDOW', false);
+      router.push('/')
     }
 
-    return { formData, showGoBack, returnToMain }
+    return { formData, returnToMain }
   }
 })
 </script>
@@ -180,15 +180,6 @@ export default defineComponent({
       align-items: center;
       justify-content: space-evenly;
       flex-direction: column;
-    }
-    .go-back{
-      width: 100px;
-      margin: 0 auto;
-      color: #2c3e50;
-      text-decoration: none;
-      &:hover{
-        text-decoration: underline;
-      }
     }
   }
 }

@@ -43,9 +43,6 @@ export default defineComponent({
   background: #fff;
   cursor: auto;
   opacity: 1;
-  z-index: 3;
-  transform: translateX(0%);
-  transition: all .5s ease;
   width: 350px;
   .close-button {
     cursor: pointer;
